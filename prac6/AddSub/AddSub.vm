@@ -4,6 +4,14 @@
 
 // Put your code here.
 
+push local 0
+push local 1
+add           //a+b
+
+push static 0
+sub   // -x
+
+pop static 0   // pop answer
 
 
 label END
