@@ -9,11 +9,10 @@ push constant 0
 lt
 
 if_true LABEL_NEGATIVE 
-
+push static 0
 pop static 1
 
-goto LABEL_END
-
+goto END
 
 LABEL_NEGATIVE:
 push static 0
