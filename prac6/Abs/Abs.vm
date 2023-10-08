@@ -8,13 +8,13 @@ push static 0
 push constant 0
 lt
 
-if_true LABEL_NEGATIVE 
+if-goto NEGATIVE 
 push static 0
 pop static 1
 
 goto END
 
-LABEL_NEGATIVE:
+label NEGATIVE
 push static 0
 neg
 pop static 1
