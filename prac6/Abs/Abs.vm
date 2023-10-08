@@ -3,7 +3,22 @@
 
 // Put your code here.
 
+push static 0
 
+push constant 0
+lt
+
+if_true LABEL_NEGATIVE 
+
+pop static 1
+
+goto LABEL_END
+
+
+LABEL_NEGATIVE:
+push static 0
+neg
+pop static 1
 
 label END
 goto END
