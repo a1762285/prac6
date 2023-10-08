@@ -4,6 +4,35 @@
 
 // Put your code here.
 
+push static 0
+push constant 0
+eq
+
+if-goto ZERO
+
+
+
+push static 1
+push constant 0
+eq
+
+if-goto ZERO   // check any 0 in x or y
+
+
+
+
+
+push static 0   
+push static 1  
+call Math.multiply 2 
+pop local 0  
+
+
+label ZERO    // if Zero
+push constant 0
+pop local 0
+goto END
+
 
 
 label END
