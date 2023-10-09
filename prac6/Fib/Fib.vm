@@ -3,3 +3,40 @@
 
 // Put your code here.
 
+
+// Fib.fib VM implementation
+
+function Fib.fib 0
+
+// Get the value of y (n)
+push argument 0
+
+// Base cases: If y (n) is 0 or 1, return the value immediately
+push constant 2
+lt
+if-goto BASE_CASE
+
+// Recursive computation for y (n) > 1
+
+// Compute Fib.fib(y-1)
+push argument 0
+push constant 1
+sub
+call Fib.fib 1
+
+// Compute Fib.fib(y-2)
+push argument 0
+push constant 2
+sub
+call Fib.fib 1
+
+// Sum the results of Fib.fib(y-1) and Fib.fib(y-2)
+add
+
+// Return the result
+return
+
+label BASE_CASE
+// If y (n) is 0 or 1, just return y (n)
+push argument 0
+return
