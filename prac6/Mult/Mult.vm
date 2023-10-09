@@ -4,88 +4,89 @@
 
 // Put your code here.
 
-push static 0
-push constant 0
-lt
-push static 1
-push constant 0
-lt
-eq
-pop local 1 // local 1 = 1 if result is positive, 0 if negative
-
-
 
 push static 0
 push constant 0
 eq
-
 if-goto ZERO
 
-push static 1
+
+push static 0
+push constant 0
+gt
+if-goto POS
+
+
+push constant 0
+push static 0
+sub
+pop local 3
+goto NEXT
+
+
+
+
+
+label POS  // if postive
+push static 0
+pop local 3
+
+
+
+
+label NEXT
+push constant 0
+pop local 0
+
+
+
+label LOOP
+push local 3
 push constant 0
 eq
 
-if-goto ZERO  
 
-push static 0
-push constant 0
-lt
-if-goto X_NEGATIVE
-goto X_POSITIVE
-label X_NEGATIVE
-push constant 0
-push static 0
-sub
-pop static 0
 
-label X_POSITIVE
+if-goto JUDGE
+push local 0
 push static 1
-push constant 0
-lt
-if-goto Y_NEGATIVE
-goto Y_POSITIVE
-label Y_NEGATIVE
-push constant 0
-push static 1
-sub
-pop static 1
-
-label Y_POSITIVE
+add
+pop local 0
 
 
 
-
-push constant 0
-pop local 0 
-
-label MULTIPLICATION_LOOP
-push static 1
+push local 3
 push constant 1
 sub
-pop static 1
+pop local 3
+goto LOOP
+
+
+
+label ZERO
+push constant 0
+pop local 0
+goto END
+
+
+
+
+label JUDGE
 push static 0
-add
-pop local 0 // a += x
-push static 1
-if-goto MULTIPLICATION_LOOP
+push constant 0
+lt
+if-goto NEG
+goto END
 
 
+label NEG
 
-
-push local 1
-if-goto END
 push constant 0
 push local 0
 sub
 pop local 0
 
 
-
-
-
-label ZERO    // if Zero
-push constant 0
-pop local 0
 
 label END
 goto END
