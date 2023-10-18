@@ -3,7 +3,7 @@
 
 // Put your code here.
 
-function Fib.fib 0
+function Fib.fib 1
 push argument 0      // push x in stack 
 push constant 1      // push 1 in stack
 eq                // x= 1
