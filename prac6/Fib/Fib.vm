@@ -5,15 +5,15 @@
 
 function Fib.fib 1
 push argument 0      // push x in stack 
-push constant 1      // push 1 in stack
-eq                // x= 1
-if-goto L1         // if x <=1 goto L1 lablel
+push constant 0      // push 0 in stack
+eq                // x= 0
+if-goto L        // if x=0 goto L1 lablel
 
 
 push argument 0 //
 push constant 1
 eq            // 
-if-goto L1
+if-goto L
 
 
 push argument 0  // push x in stack 
@@ -29,6 +29,6 @@ call Fib.fib 1  // call  Fib.fib(x-2)
 add             // add them
 return      
 
-label L1
+label L
 push argument 0  // if lower than 1 push x  to stack 
 return
