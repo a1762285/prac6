@@ -6,7 +6,7 @@
 
 // Fib.fib VM implementation
 
-function Fib.fib 0
+function Fib.fib 1
 
 // Get the value of y (n)
 push argument 0
