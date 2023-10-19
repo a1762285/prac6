@@ -2,19 +2,13 @@ class VMTranslator:
 
     def vm_push(segment, offset):
         '''Generate Hack Assembly code for a VM push operation'''
-        if segment == "local":
-            asm_code = f'@LCL\nD=M\n@{offset}\nA=D+A\nD=M\n'
-        elif segment == "argument":
-            asm_code = f'@ARG\nD=M\n@{offset}\nA=D+A\nD=M\n'
+        if segment == "constant":
+            return f"@{offset}\nD=A\n@SP\nA=M\nM=D\n@SP\nM=M+1\n"
         else:
-            # Handle other memory segments here
-            pass
-        
-        # Push the value from D register onto the stack
-        asm_code += '@SP\nA=M\nM=D\n@SP\nM=M+1\n'
+            return f"@{offset}\nD=A\n@{segment.upper()}\nA=M+D\nD=M\n@SP\nA=M\nM=D\n@SP\nM=M+1\n"
 
-        return asm_code
 
+            
     def vm_pop(segment, offset):
         '''Generate Hack Assembly code for a VM pop operation'''
         return ""
