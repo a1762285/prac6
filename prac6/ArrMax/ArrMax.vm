@@ -4,55 +4,76 @@
 // Put your code here.
 
 
+
 function ArrMax.arrMax 2
 
+push argument 1
+push constant 1
+lt
+if-goto ZERO
 
-push constant 0
-pop local 0    //save max number
+
+push constant -32768   //数据 max 的值
+pop temp 0
+
+push constant 0    // 数据迭代次数
+pop temp 1
+
+push constant 0   //数据数组的索引位置
+pop temp 2
+
+push argument 1
+pop temp 3            //数组长度
+
+push argument -32768   //用来对比的数值
+pop temp 4  
 
 
-push constant 0
-pop local 1   // nows number
+
+goto LOOP
 
 
 label LOOP
-push argument 1
-push local 1  // Load currentIndex
-    
+
+
+push argument 0  //数据的地址
+push temp 2  //数据的索引位置
+add
+pop pointer 1   //把地址放到 pointer 1
+push that 0    // 读取 pointer 0 便偏移的数值
+pop temp 4
+
+
+push temp 4  //  数据的索引位置
+push temp 0  //把 max 压入 stack
+gt   //如果
+if-goto UPDATE_MAX
+
+// 增加索引和迭代器
+push temp 2
+push constant 1
+add
+pop temp 2
+
+push temp 1
+push constant 1
+add
+pop temp 1
+
+// 判断是否结束循环
+push temp 1
+push temp 3
 lt
-if-goto END 
+if-goto LOOP_START
 
-// Load current element
-push argument 0 
-push local 1 
-add
-pop pointer 0
-push that 0
+// 循环结束
+label UPDATE_MAX
+push temp 4
+pop temp 0
+push temp 0
+return
 
-push local 0  
-push that 0
-gt
-
-if-goto MAX
-
-
-push local 1
-push constant 1
-add
-pop local 1
-goto LOOP
-
-label MAX
-pop local 0  // update max number
-push local 1
-push constant 1
-add
-pop local 1
-goto LOOP_START
-
-
-
-
-label END
-push local 0   // return max number
+// 数组为空的情况
+label ZERO
+push constant 0
 return
