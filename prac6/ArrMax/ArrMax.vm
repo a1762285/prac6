@@ -4,7 +4,7 @@
 // Put your code here.
 
 
-function ArrMax.arrMax 2
+function ArrMax.arrMax
 push argument 1
 push constant 1
 lt
