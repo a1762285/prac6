@@ -5,49 +5,62 @@
 
 
 function ArrMax.arrMax 2
+push argument 1
+push constant 1
+lt
+if-goto ZERO
 
-push argument 0   // 当前数据地址
-pop pointer 0
+push constant 0
+pop temp 0  //存的最大值
 
-push constant 0 //目前 max 数值
-pop local 0
+push constant 0
+pop temp 1   //循环多少次了
 
-push constant 0 //array 长度
-pop local 1
+push argument 1
+pop temp 2        //数组有多长
+goto LOOP
 
-label LOOP_START   //开始循环
-push local 1            
-push argument 1   //如果 array 长度小于 0 结束
-gt
-if-goto END_LOOP
 
-push pointer 0   // 把地址压入 stack 
-push local 1   // array 长度
+label LOOP
+push temp 1  
+push constant 1
+add
+pop temp 1        // 循环次数加一
+
+
+push temp 1   //如果循环次数大于数组长度 去 post loop
+push temp 2
+eq
+if-goto DONE
+
+
+push argument 0   
+push temp 1      //当前循环的数值
 add
 pop pointer 1
-push that 0   //加载 数据地址的数值
-pop local 0  //对比 max 数值
+push that 0     //  获得数值
+pop temp 3      //  推送到 temp 3 暂时储存
+
+
+push temp 3  //临时数值
+push temp 0     //当前最大数值
 gt
 if-goto UPDATE_MAX
 
-local 1   //array 长度
-push constant 1
-add     // 
-pop local 1
 
-goto LOOP_START
+goto LOOP
 
-label UPDATE_MAX
-push that 0
-pop local 0
+label UPDATE_MAX   
+push temp 3
+pop temp 0      //更新最大值
+goto LOOP
 
-local 1
-push constant 1
-add
-pop local 1
 
-goto LOOP_START
+label DONE  // 遍历次数和长度一样了结束返回数值
+push temp 0
+return
 
-label END_LOOP
-push local 0
+
+label ZERO  // 数组没有数值
+push constant 0
 return
