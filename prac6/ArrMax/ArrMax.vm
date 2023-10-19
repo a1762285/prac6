@@ -25,7 +25,7 @@ pop temp 2
 push argument 1
 pop temp 3            //数组长度
 
-push argument -32768   //用来对比的数值
+push constant -32768   //用来对比的数值
 pop temp 4  
 
 
