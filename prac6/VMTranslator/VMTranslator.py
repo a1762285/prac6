@@ -19,6 +19,8 @@ class VMTranslator:
         return assembly   
     def vm_pop(segment, offset):
         '''Generate Hack Assembly code for a VM pop operation'''
+        if segment not in ['constant', 'local', 'argument', 'this', 'that', 'pointer', 'temp', 'static']:
+            return "@error\n" 
         if segment in ['local', 'argument', 'this', 'that']:
             seg = {'local': 'LCL', 'argument': 'ARG', 'this': 'THIS', 'that': 'THAT'}.get(segment, segment)
             assembly = f"@{seg}\nD=M\n@{offset}\nD=D+A\n@R13\nM=D\n@SP\nAM=M-1\nD=M\n@R13\nA=M\nM=D\n"
