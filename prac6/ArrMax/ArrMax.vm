@@ -3,3 +3,56 @@
 
 // Put your code here.
 
+
+function ArrMax.arrMax 0
+
+
+push constant 0
+pop local 0    //save max number
+
+
+push constant 0
+pop local 1   // nows number
+
+
+label LOOP
+push argument 1
+push local 1  // Load currentIndex
+    
+lt
+if-goto END 
+
+// Load current element
+push argument 0 
+push local 1 
+add
+pop pointer 0
+push that 0
+
+push local 0  
+push that 0
+gt
+
+if-goto MAX
+
+
+push local 1
+push constant 1
+add
+pop local 1
+goto LOOP
+
+label MAX
+pop local 0  // update max number
+push local 1
+push constant 1
+add
+pop local 1
+goto LOOP_START
+
+
+
+
+label END
+push local 0   // return max number
+return
