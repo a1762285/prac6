@@ -3,8 +3,22 @@ class VMTranslator:
     def vm_push(segment, offset):
         '''Generate Hack Assembly code for a VM push operation'''
         if segment == 'constant':
-            return '@{offset}\nD=A\n@SP\nA=M\nM=D\n@SP\nM=M+1\n'
-            
+            assembly = f"@{offset}\nD=A\n"
+        elif segment in ['local', 'argument', 'this', 'that']:
+            seg = {'local': 'LCL', 'argument': 'ARG', 'this': 'THIS', 'that': 'THAT'}.get(segment, segment)
+            assembly = f"@{seg}\nD=M\n@{offset}\nA=D+A\nD=M\n"
+        elif segment == 'pointer':
+            addr = 3 if offset == 0 else 4
+            assembly = f"@{addr}\nD=M\n"
+        elif segment == 'temp':
+            addr = 5 + offset
+            assembly = f"@{addr}\nD=M\n"
+        elif segment == 'static':
+            assembly = f"@static.{offset}\nD=M\n"
+    
+    # Common code for all segments to push D register to the stack and increment the stack pointer
+    assembly += "@SP\nA=M\nM=D\n@SP\nM=M+1\n"
+    return assembly   
     def vm_pop(segment, offset):
         '''Generate Hack Assembly code for a VM pop operation'''
 
