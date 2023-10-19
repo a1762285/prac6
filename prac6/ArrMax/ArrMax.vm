@@ -10,10 +10,10 @@ push constant 1
 lt
 if-goto ZERO
 
-push constant 0
+push constant -32768
 pop temp 0  //存的最大值
 
-push constant -1
+push constant 0
 pop temp 1   //循环多少次了
 
 push argument 1
