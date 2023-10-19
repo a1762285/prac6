@@ -10,7 +10,8 @@ push constant 1
 lt
 if-goto ZERO
 
-push constant -32768
+push constant 32768
+neg
 pop temp 0  //存的最大值
 
 push constant 0
