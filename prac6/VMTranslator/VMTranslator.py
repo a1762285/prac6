@@ -84,7 +84,7 @@ class VMTranslator:
 
     def vm_function(function_name, n_vars):
         '''Generate Hack Assembly code for a VM function operation'''
-        return ""
+        return '@{function_name}\n0;JMP\n'
 
     def vm_call(function_name, n_args):
         '''Generate Hack Assembly code for a VM call operation'''
