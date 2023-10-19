@@ -24,14 +24,7 @@ class VMTranslator:
         elif segment in ['local', 'argument', 'this', 'that']:
             seg = {'local': 'LCL', 'argument': 'ARG', 'this': 'THIS', 'that': 'THAT'}.get(segment, segment)
             assembly = f"@{seg}\nD=M\n@{offset}\nD=D+A\n@R13\nM=D\n@SP\nAM=M-1\nD=M\n@R13\nA=M\nM=D\n"
-        elif segment == 'pointer':
-            addr = 3 if offset == 0 else 4
-            assembly = f"@SP\nAM=M-1\nD=M\n@{addr}\nM=D\n"
-        elif segment == 'temp':
-            addr = 5 + offset
-            assembly = f"@SP\nAM=M-1\nD=M\n@{addr}\nM=D\n"
-        elif segment == 'static':
-            assembly = f"@SP\nAM=M-1\nD=M\n@static.{offset}\nM=D\n"
+
         return assembly
     def vm_add():
         '''Generate Hack Assembly code for a VM add operation'''
