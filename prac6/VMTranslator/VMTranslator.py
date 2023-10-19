@@ -35,7 +35,31 @@ class VMTranslator:
 
     def vm_lt():
         '''Generate Hack Assembly code for a VM lt operation'''
-        return ""
+        lt = """
+            @SP   
+            M=M-1 
+            A=M  
+            D=M  
+            @SP  
+            M=M-1  
+            A=M  
+            D=M-D   
+            @LT_TRUE  
+            D;JLT   
+            @SP  
+            A=M 
+            M=0  
+            @LT_END 
+            0;JMP  
+            (LT_TRUE) 
+            @SP 
+            A=M 
+            M=-1  
+            (LT_END) 
+            @SP
+            M=M+1
+        """
+        return lt
 
     def vm_and():
         '''Generate Hack Assembly code for a VM and operation'''
