@@ -67,7 +67,8 @@ class VMTranslator:
 
     def vm_or():
         '''Generate Hack Assembly code for a VM or operation'''
-        return ""
+        return '@SP\nAM=M-1\nD=M\n@SP\nAM=M-1\nM=M|D\n@SP\nM=M+1\n'
+
 
     def vm_not():
         '''Generate Hack Assembly code for a VM not operation'''
