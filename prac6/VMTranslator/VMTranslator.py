@@ -15,10 +15,8 @@ class VMTranslator:
             assembly = f"@{addr}\nD=M\n"
         elif segment == 'static':
             assembly = f"@static.{offset}\nD=M\n"
-    
-    # Common code for all segments to push D register to the stack and increment the stack pointer
-    assembly += "@SP\nA=M\nM=D\n@SP\nM=M+1\n"
-    return assembly   
+        assembly += "@SP\nA=M\nM=D\n@SP\nM=M+1\n"
+        return assembly   
     def vm_pop(segment, offset):
         '''Generate Hack Assembly code for a VM pop operation'''
 
