@@ -4,9 +4,6 @@ class VMTranslator:
         '''Generate Hack Assembly code for a VM push operation'''
         if segment == "constant":
             return f"@{offset}\nD=A\n@SP\nA=M\nM=D\n@SP\nM=M+1\n"
-        else:
-            return f"@{offset}\nD=A\n@{segment.upper()}\nA=M+D\nD=M\n@SP\nA=M\nM=D\n@SP\nM=M+1\n"
-
 
             
     def vm_pop(segment, offset):
