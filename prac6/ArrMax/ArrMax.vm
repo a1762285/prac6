@@ -30,7 +30,9 @@ pop temp 1        // 循环次数加一
 
 push temp 1   //如果循环次数大于数组长度 去 post loop
 push temp 2
-eq
+push constant 1
+sub
+gr
 if-goto DONE
 
 
