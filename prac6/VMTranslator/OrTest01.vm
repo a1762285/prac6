@@ -1,0 +1,4 @@
+push constant 0
+push constant 1
+or
+pop local 0

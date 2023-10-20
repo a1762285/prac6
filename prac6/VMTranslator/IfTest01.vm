@@ -1,0 +1,5 @@
+push constant 0
+if-goto END
+
+
+label END

@@ -1,0 +1,7 @@
+label NEG
+goto NEG
+
+push constant 1
+NEG
+
+label NEG
